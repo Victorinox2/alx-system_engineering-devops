@@ -1,14 +1,37 @@
 #!/usr/bin/env bash
-# transfer a file from client to server
+# configure Nginx server to redirect to another page.
+# add custom error page.
+# add a custom Nginx response header.
 
-args="$#"
-if [[ $args -lt 3 ]];
-then
-	echo "Usage: 0-transfer_file PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY"
-else
-	file_path="$1"
-	ip_addr="$2"
-	usr="$3"
-	ssh_key_path="$4"
-	scp -o StrictHostKeyChecking=no -i "$ssh_key_path" "$file_path" "$usr"@"$ip_addr":~/
-fi
+#!/usr/bin/env bash
+# automate installation and set up of the inginx web server, redirection
+# and custom error messages
+
+sudo apt-get update -y
+
+sudo apt-get install nginx -y
+
+sudo ufw allow 'Nginx HTTP'
+
+sudo chown -R $USER:$USER /var/www
+
+sudo chmod -R 755 /var/www
+
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/custom_404.html
+
+replace_str="server_name _;\n\n\terror_page 404 \/custom_404.html;\n\tlocation = \/custom_404.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}"
+
+sudo sed -i "s/server_name _;/$replace_str/" /etc/nginx/sites-enabled/default
+
+
+echo "Hello World!" | sudo tee /var/www/html/index.html
+
+replace_str="server_name _;\n\n\tlocation \/redirect_me {\n\t\treturn 301 https:\/\/www.google.com;\n\t}"
+
+sudo sed -i "s/server_name _;/$replace_str/" /etc/nginx/sites-enabled/default
+
+
+replace_str="server_name _;\n\n\t# Add Custom Header\n\tadd_header X-Served-By \$hostname;"
+sudo sed -i "s/server_name _;/$replace_str/" /etc/nginx/sites-enabled/default
+
+sudo service nginx restart
