@@ -44,4 +44,3 @@ if __name__ == "__main__":
             todo_all_employee[dict_key] = _lists
 
         json.dump(todo_all_employee, json_file)
-
