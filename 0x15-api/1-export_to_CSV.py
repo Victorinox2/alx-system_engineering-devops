@@ -44,4 +44,3 @@ if __name__ == "__main__":
                     "TASK_COMPLETED_STATUS": task_completed_status,
                     "TASK_TITLE": title
                     })
-
