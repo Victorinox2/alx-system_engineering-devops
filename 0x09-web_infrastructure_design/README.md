@@ -1,6 +1,6 @@
-In this project i learnt about the following:
+# 0x09. Web infrastructure design
 
-1.Draw a diagram covering the web stack built with the sysadmin/devops track projects
-2.What each component is doing
-3.What is system redundancy
-4.Learnt about:LAMP, SPOF, QPS
+## Description
+
+This project contains links to diagrams representing different web infrastructures.
+Its goal is to understand, on a very high-level, how web infrastructures are organized and what are their components.

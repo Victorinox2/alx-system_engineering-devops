@@ -1,11 +1,13 @@
-The Webstack debugging series will train you in the art of debugging. Computers and software rarely work the way we want (that’s the “fun” part of the job!).
+# Web stack debugging #0
 
-Being able to debug a webstack is essential for a Full-Stack Software Engineer, and it takes practice to be a master of it.
+This was the first in a series of web stack debugging projects. In these
+projects, I was given broken/bugged webstacks in isolated containers,
+and tasked with fixing the web stack to a working state. For each
+task, I wrote a script automating the commands necessary to fix the
+web stack.
 
-In this debugging series, broken/bugged webstacks will be given to you, the final goal is to come up with a Bash script that once executed, will bring the webstack to a working state. But before writing this Bash script, you should figure out what is going on and fix it manually.
+## Tasks :page_with_curl:
 
-Let’s start with a very simple example. My server must:
-
-have a copy of the /etc/passwd file in /tmp
-have a file named /tmp/isworking containing the string OK
-Let’s pretend that without these 2 elements, my web application cannot work.
+* **0. Give me a page!**
+  * [0-give_me_a_page](./0-give_me_a_page): Bash script that runs Apache on a
+  web server and gets it to respond to queries to the root.
